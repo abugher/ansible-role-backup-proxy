@@ -1,0 +1,17 @@
+---
+user_groups:
+  - 'backup_proxy'
+users:
+  - 'backup_proxy'
+template_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'templates/bin/backup_proxyd.j2'
+    dest:               '/usr/local/bin/backup_proxyd'
+create_files:
+  - owner:              'backup_proxy'
+    group:              'root'
+    mode:               '0540'
+    state:              'touch'
+    path:               '/var/log/backup_proxy.log'
