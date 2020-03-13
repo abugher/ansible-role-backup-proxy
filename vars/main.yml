@@ -9,9 +9,19 @@ template_files:
     mode:               '0755'
     src:                'templates/bin/backup_proxyd.j2'
     dest:               '/usr/local/bin/backup_proxyd'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'files/init.d/backup_proxy'
+    dest:               '/etc/init.d/backup_proxy'
 create_files:
   - owner:              'backup_proxy'
     group:              'root'
     mode:               '0540'
     state:              'touch'
     path:               '/var/log/backup_proxy.log'
+enable_services:
+  - 'backup_proxy'
+start_services:
+  - 'backup_proxy'
